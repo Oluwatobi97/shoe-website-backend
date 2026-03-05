@@ -7,8 +7,16 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: true, // Allow all origins
+  credentials: true
+}));
 app.use(express.json());
+
+// Health check endpoint
+app.get("/", (req, res) => {
+  res.json({ status: "OK", message: "Backend is running" });
+});
 
 app.post("/api/orders", async (req, res) => {
   try {
