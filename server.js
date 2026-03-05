@@ -13,7 +13,13 @@ app.use(express.json());
 app.post("/api/orders", async (req, res) => {
   try {
     const { product, quantity, total, customer, phone } = req.body;
-    console.log("Order received:", { product, quantity, total, customer, phone });
+    console.log("Order received:", {
+      product,
+      quantity,
+      total,
+      customer,
+      phone,
+    });
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -41,7 +47,9 @@ app.post("/api/orders", async (req, res) => {
     return res.json({ success: true, message: "Order sent successfully" });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ success: false, message: "Failed to send email" });
+    return res
+      .status(500)
+      .json({ success: false, message: "Failed to send email" });
   }
 });
 
