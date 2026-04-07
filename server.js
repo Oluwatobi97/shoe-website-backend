@@ -29,8 +29,7 @@ app.post("/api/orders", async (req, res) => {
       phone,
     });
 
-    // Temporarily comment out email sending for testing
-    /*
+    // Send email notification
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -53,9 +52,8 @@ app.post("/api/orders", async (req, res) => {
         <p><strong>Phone:</strong> ${phone}</p>
       `,
     });
-    */
 
-    return res.json({ success: true, message: "Order sent successfully (email disabled for testing)" });
+    return res.json({ success: true, message: "Order sent successfully! We'll contact you soon." });
   } catch (error) {
     console.error(error);
     return res
