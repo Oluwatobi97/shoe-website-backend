@@ -22,13 +22,14 @@ app.get("/", (req, res) => {
 
 app.post("/orders", async (req, res) => {
   try {
-    const { product, quantity, total, customer, phone } = req.body;
+    const { product, quantity, total, customer, phone, address } = req.body;
     console.log("Order received:", {
       product,
       quantity,
       total,
       customer,
       phone,
+      address,
     });
 
     // Send email notification via Resend
@@ -42,6 +43,7 @@ app.post("/orders", async (req, res) => {
           <p><strong>Product:</strong> ${product}</p>
           <p><strong>Quantity:</strong> ${quantity}</p>
           <p><strong>Total:</strong> ₦${total}</p>
+          <p><strong>Delivery Address:</strong> ${address}</p>
           <hr/>
           <p><strong>Name:</strong> ${customer}</p>
           <p><strong>Phone:</strong> ${phone}</p>
