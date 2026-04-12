@@ -25,13 +25,15 @@ app.get("/", (req, res) => {
 app.post("/orders", async (req, res) => {
   // ✅ correct
   try {
-    const { product, quantity, total, customer, phone } = req.body;
+    const { product, quantity, total, customer, phone, address, shoeSize } = req.body;
     console.log("Order received:", {
       product,
       quantity,
       total,
       customer,
       phone,
+      address,
+      shoeSize,
     });
 
     // Send email using Resend
@@ -48,6 +50,8 @@ app.post("/orders", async (req, res) => {
           <hr/>
           <p><strong>Name:</strong> ${customer}</p>
           <p><strong>Phone:</strong> ${phone}</p>
+          <p><strong>Address:</strong> ${address}</p>
+          <p><strong>Shoe Size:</strong> ${shoeSize || "N/A"}</p>
         `,
       });
 

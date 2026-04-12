@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 export const sendOrderEmail = async (req, res) => {
   try {
-    const { product, quantity, total, customer, phone } = req.body;
+    const { product, quantity, total, customer, phone, address, shoeSize } = req.body;
 
     // create transporter
     const transporter = nodemailer.createTransport({
@@ -30,6 +30,8 @@ export const sendOrderEmail = async (req, res) => {
         <h3>Customer Details</h3>
         <p><strong>Name:</strong> ${customer}</p>
         <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Address:</strong> ${address}</p>
+        <p><strong>Shoe Size:</strong> ${shoeSize || "N/A"}</p>
       `,
     };
 
