@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
   res.json({ status: "OK", message: "Backend is running" });
 });
 
-app.post("/orders", async (req, res) => {
+app.post("/orders", async (req, res) => {  // ✅ correct
   try {
     const { product, quantity, total, customer, phone } = req.body;
     console.log("Order received:", {
