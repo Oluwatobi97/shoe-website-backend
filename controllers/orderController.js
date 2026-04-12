@@ -13,7 +13,7 @@ export const sendOrderEmail = async (req, res) => {
       },
     });
 
-    // email content
+    // want ito l content
     const mailOptions = {
       from: `"Leather Store" <${process.env.EMAIL_USER}>`,
       to: process.env.OWNER_EMAIL,

@@ -36,7 +36,7 @@ app.post("/orders", async (req, res) => {  // ✅ correct
     // Send email using Resend
     await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: "leyesamadepoju6101@gmail.com",
+      to: process.env.OWNER_EMAIL,  // ✅ correct
       subject: "New Shoe Order!",
       html: `
         <h2>New Order</h2>
