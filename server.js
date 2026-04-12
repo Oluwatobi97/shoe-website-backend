@@ -35,20 +35,27 @@ app.post("/orders", async (req, res) => {
     });
 
     // Send email using Resend
-    await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: process.env.OWNER_EMAIL, // ✅ correct
-      subject: "New Shoe Order!",
-      html: `
-        <h2>New Order</h2>
-        <p><strong>Product:</strong> ${product}</p>
-        <p><strong>Quantity:</strong> ${quantity}</p>
-        <p><strong>Total:</strong> ₦${total}</p>
-        <hr/>
-        <p><strong>Name:</strong> ${customer}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-      `,
-    });
+    try {
+      const emailResult = await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: process.env.OWNER_EMAIL, // ✅ correct
+        subject: "New Shoe Order!",
+        html: `
+          <h2>New Order</h2>
+          <p><strong>Product:</strong> ${product}</p>
+          <p><strong>Quantity:</strong> ${quantity}</p>
+          <p><strong>Total:</strong> ₦${total}</p>
+          <hr/>
+          <p><strong>Name:</strong> ${customer}</p>
+          <p><strong>Phone:</strong> ${phone}</p>
+        `,
+      });
+
+      console.log("Email result:", emailResult);
+    } catch (emailError) {
+      console.error("Email error:", emailError);
+      throw emailError;
+    }
 
     return res.json({ success: true, message: "Order sent successfully" });
   } catch (error) {
